@@ -1,0 +1,35 @@
+body{
+    background-color: rgb(41, 34, 34);
+    position: relative;
+}
+
+.keys{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 200px;
+    
+}
+
+.key{
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgb(177, 120, 120);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60px;
+    font-size: 1.5rem;
+    border: 3px solid brown;
+    transition: all 0.2s;
+}
+
+.key kbd{
+    font-size: 2rem;
+}
+
+.playing{
+    transform: scale(1.1);
+    border-color: brown;
+    box-shadow: 0 0 10px brown;
+    
+}

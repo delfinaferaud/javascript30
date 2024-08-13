@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DrumKit</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="keys">
+
+        <div data-key="65" class="key">
+            <kbd>A</kbd>
+            <span class="sound">kick</span>
+        </div>
+
+        <div data-key="66" class="key">
+            <kbd>B</kbd>
+            <span class="sound">clap</span>
+        </div>
+
+        <div data-key="67" class="key">
+            <kbd>C</kbd>
+            <span class="sound">electro</span>
+        </div>
+
+        <div data-key="68" class="key">
+            <kbd>D</kbd>
+            <span class="sound">snare</span>
+        </div>
+
+        <div data-key="69" class="key">
+            <kbd>E</kbd>
+            <span class="sound">hihat</span>
+        </div>
+
+        <div data-key="70" class="key">
+            <kbd>F</kbd>
+            <span class="sound">full</span>
+        </div>
+
+        <div data-key="71" class="key">
+            <kbd>G</kbd>
+            <span class="sound">cymbal</span>
+        </div>
+
+        <div data-key="72" class="key">
+            <kbd>H</kbd>
+            <span class="sound">boom</span>
+        </div>
+
+        <div data-key="73" class="key">
+            <kbd>I</kbd>
+            <span class="sound">openhat</span>
+        </div>
+
+    </div>
+
+    <audio data-key="65" src="sounds/awesome-kick-drum-41824.mp3"></audio>
+    <audio data-key="66" src="sounds/clap-2-95736.mp3"></audio>
+    <audio data-key="67" src="sounds/electro-kick-202535.mp3"></audio>
+    <audio data-key="68" src="sounds/hi_flitter_snare-88923.mp3"></audio>
+    <audio data-key="69" src="sounds/hihat-closing-98355.mp3"></audio>
+    <audio data-key="70" src="sounds/lca_172_drum_06_full-98179.mp3"></audio>
+    <audio data-key="71" src="sounds/long-ride-cymbal-2-36337.mp3"></audio>
+    <audio data-key="72" src="sounds/loud-switch-sound-from-an-old-boom-box-8438.mp3"></audio>
+    <audio data-key="73" src="sounds/openhat-164697.mp3"></audio>
+
+
+    <script>
+        
+        function playSound(e){
+            const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+            const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+            if(!audio) return;
+            audio.currentTime = 0;
+            audio.play();
+            key.classList.add('playing');
+        }
+        
+        function removeTransition(e){
+            if(e.propertyName !== 'transform') return;
+            this.classList.remove('playing')
+        }
+        const keys = document.querySelectorAll('.key');
+        keys.forEach(key => key.addEventListener('transitionend', removeTransition))
+        window.addEventListener('keydown', playSound);
+    </script>
+</body>
+</html>
